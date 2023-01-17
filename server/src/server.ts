@@ -8,6 +8,6 @@ app.get('/', ()=>{
 
 app.listen({
     port: 3333
+}).then(()=>{
+    console.log('HTTP Server running! http://localhost:3333')
 })
-
-console.log('http://localhost:3333')
