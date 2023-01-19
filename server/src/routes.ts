@@ -1,7 +1,7 @@
 import { prisma } from "./lib/prisma";
 import { FastifyInstance } from "fastify";
 
-export function appRoutes(app: FastifyInstance) {
+export async function appRoutes(app: FastifyInstance) {
 
     // app.get('/listhabits', async ()=>{
     //     const habits = await prisma.habit.findMany({
