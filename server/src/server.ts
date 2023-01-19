@@ -1,32 +1,19 @@
-import Fastify from "fastify";
-import cors from '@fastify/cors'
-import {PrismaClient} from '@prisma/client'
+import Fastify from 'fastify';
+import cors from '@fastify/cors';
+import { appRoutes } from "./routes";
 
-const app = Fastify()
-const prisma = new PrismaClient
+const app = Fastify();
 
-app.register(cors,{
-    origin: ['http://localhost:5173']
-})
+app.register(cors, {
+  origin: ['http://localhost:5173'],
+});
 
-app.get('/listhabits', async ()=>{
-    const habits = await prisma.habit.findMany()
-    return habits
-})
+app.register(appRoutes)
 
-// app.get('/listhabits', async ()=>{
-//     const habits = await prisma.habit.findMany({
-//         where: {
-//             title: {
-//                 startsWith: "Beber"
-//             }
-//         }
-//     })
-//     return habits
-// })
-
-app.listen({
-    port: 3333
-}).then(()=>{
-    console.log('HTTP Server running! http://localhost:3333')
-})
+app
+  .listen({
+    port: 3333,
+  })
+  .then(() => {
+    console.log('HTTP Server running! http://localhost:3333');
+  });
