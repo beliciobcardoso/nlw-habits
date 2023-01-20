@@ -1,9 +1,11 @@
-function App() {
+import './styles/global.css';
+export function App() {
   return (
     <div className="App">
+      <div className="AppContainer">
+        <p>teste</p>
+      </div>
 
     </div>
   )
 }
-
-export default App
