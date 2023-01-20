@@ -1,4 +1,5 @@
 import { Header } from './components/Header';
+import { SummaryTable } from './components/SummaryTable';
 import './styles/global.css';
 
 export function App() {
@@ -6,6 +7,7 @@ export function App() {
     <div className='App'>
       <div className='AppContainer'>
         <Header />
+        <SummaryTable />
       </div>
     </div>
   );
