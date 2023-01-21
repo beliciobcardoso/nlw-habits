@@ -1,3 +1,3 @@
 export function HabitDay() {
-  return <div className='quadradinhos'></div>;
+  return <div className='DaysSquares'></div>;
 }
