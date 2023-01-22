@@ -1,5 +1,6 @@
 import * as Checkbox from '@radix-ui/react-checkbox';
 import { Check } from 'phosphor-react';
+import { FormEvent, useState } from 'react';
 
 const daysWeek = [
   'Domingo',
@@ -12,14 +13,32 @@ const daysWeek = [
 ];
 
 export function NewHabitForm() {
+  const [title, setTitle] = useState('');
+  const [weekDays, setWeekDays] = useState<number[]>([]);
+
+  function createNewHabit(event: FormEvent) {
+    event.preventDefault();
+  }
+
+  function handleToggleWeekDay(weekDay: number) {
+    if (weekDays.includes(weekDay)) {
+      const weekDaysWithRemovedOne = weekDays.filter((day) => day !== weekDay);
+      setWeekDays(weekDaysWithRemovedOne);
+    } else {
+      const weekDaysWithAddedOne = [...weekDays, weekDay];
+      setWeekDays(weekDaysWithAddedOne);
+    }
+  }
+
   return (
-    <form className='ModalForm'>
+    <form onSubmit={createNewHabit} className='ModalForm'>
       <label htmlFor='title' className='ModalFormLabel'>
         Qual seu comprometimento?
       </label>
       <input
         type='text'
         id='title'
+        onChange={(event) => setTitle(event.target.value)}
         className='ModalFormInput'
         placeholder='Ex.: Beber Agua, Domir, etc...'
         autoFocus
@@ -29,9 +48,13 @@ export function NewHabitForm() {
       </label>
 
       <div className='Checkbox'>
-        {daysWeek.map((dayWeek) => {
+        {daysWeek.map((dayWeek, index) => {
           return (
-            <Checkbox.Root key={dayWeek} className='CheckboxRoot'>
+            <Checkbox.Root
+              key={dayWeek}
+              onCheckedChange={() => handleToggleWeekDay(index)}
+              className='CheckboxRoot'
+            >
               <div className='CheckboxIndicator'>
                 <Checkbox.Indicator className='CheckboxIndicatorCheckDaysweek'>
                   <Check />
