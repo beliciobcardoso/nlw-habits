@@ -104,3 +104,88 @@ body {
   cursor: not-allowed;
   opacity: 40%;
 }
+
+.ModalOverlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+
+.ModalContent {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  padding: 40px;
+  background-color: #303030;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 448px;
+  transform: translateX(-50%);
+}
+
+.ModalClose {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: rgb(170, 136, 136, 0);
+  color: #000000;
+  border: none;
+}
+
+.ModalClose:hover {
+  color: #726c6c;
+}
+
+.ModalTitle {
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.ModalForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px; /*mt-6 == 24px 1 == 4px */
+}
+
+.ModalFormLabel {
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.ModalFormInput {
+  padding: 16px;
+  border-radius: 8px;
+  margin: 12px 0;
+  background-color: #252424;
+  color: white;
+  border: none;
+}
+
+.ModalFormInput::placeholder {
+  color: #d4d4d4;
+}
+
+.ModalButtonConfirmar {
+  margin-top: 24px;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-weight: 600;
+  background-color: #00a500;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.ModalButtonConfirmar:hover {
+  background-color: #31f031;
+  color: black;
+}
