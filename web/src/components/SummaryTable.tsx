@@ -22,7 +22,13 @@ export function SummaryTable() {
       </div>
       <div className='DaysTable'>
         {summaryDates.map((date) => {
-          return <HabitDay key={date.toString()} />;
+          return (
+            <HabitDay
+              key={date.toString()}
+              amount={6}
+              comoleted={Math.round(Math.random() * 5)}
+            />
+          );
         })}
 
         {amountOfDaysToFill > 0 &&
