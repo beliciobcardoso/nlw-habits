@@ -149,7 +149,7 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 24px; /*mt-6 == 24px 1 == 4px */
+  margin-top: 24px;
 }
 
 .ModalFormLabel {
@@ -189,3 +189,46 @@ body {
   background-color: #31f031;
   color: black;
 }
+
+.PopoverContent {
+  min-width: 320px;
+  padding: 24px;
+  background-color: #303030;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.PopoverArrow {
+  fill: #585858;
+}
+
+.PopoverContent span:nth-child(1) {
+  font-weight: 600;
+  color: #adadad;
+}
+
+.PopoverContent span:nth-child(2) {
+  font-weight: 600;
+  color: #e7e7e7;
+  margin-top: 4px;
+  font-weight: 800;
+  line-height: 1.25;
+  font-size: x-large;
+}
+
+.ProgressBar {
+  height: 12px;
+  border-radius: 8px;
+  background-color: #6d6d6d;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.Progress {
+  height: 12px;
+  border-radius: 8px;
+  background-color: violet;
+}
+
+/*mt-6 == 24px 1 == 4px */
