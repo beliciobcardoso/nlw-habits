@@ -107,7 +107,7 @@ body {
 
 .ModalContent {
   position: absolute;
-  top: 20%;
+  top: 5%;
   left: 50%;
   padding: 40px;
   background-color: #303030;
@@ -256,4 +256,51 @@ body {
   border: solid 1px rgb(255, 0, 242, 1);
 }
 
-/*mt-6 == 24px 1 == 4px */
+.Checkbox {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.CheckboxRoot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+}
+
+.CheckboxRoot[data-state='checked'] .CheckboxIndicator {
+  background-color: #00a500;
+}
+
+.CheckboxRoot span {
+  font-weight: 600;
+  color: white;
+}
+
+.CheckboxRoot[data-state='checked'] .SpanDaysWeek {
+  text-decoration: line-through;
+  color: #726c6c;
+}
+
+.CheckboxIndicator {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #606060;
+  border: #3b3b3b solid 2px;
+}
+
+.CheckboxIndicator .CheckboxIndicatorCheck:first-child,
+.CheckboxIndicator .CheckboxIndicatorCheckDaysweek:first-child {
+  color: white;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+/*mt-6 == 24px 1 == 4px   rounded-lg 8px */

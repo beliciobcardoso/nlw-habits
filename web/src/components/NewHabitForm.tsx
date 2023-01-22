@@ -1,4 +1,15 @@
+import * as Checkbox from '@radix-ui/react-checkbox';
 import { Check } from 'phosphor-react';
+
+const daysWeek = [
+  'Domingo',
+  'Segunda-Feira',
+  'Terça-Feira',
+  'Quarta-Feira',
+  'Quinta-Feira',
+  'Sexta-Feira',
+  'Sábado',
+];
 
 export function NewHabitForm() {
   return (
@@ -16,6 +27,22 @@ export function NewHabitForm() {
       <label htmlFor='' className='ModalFormLabel'>
         Qual a recorrência?
       </label>
+
+      <div className='Checkbox'>
+        {daysWeek.map((dayWeek) => {
+          return (
+            <Checkbox.Root key={dayWeek} className='CheckboxRoot'>
+              <div className='CheckboxIndicator'>
+                <Checkbox.Indicator className='CheckboxIndicatorCheckDaysweek'>
+                  <Check />
+                </Checkbox.Indicator>
+              </div>
+              <span>{dayWeek}</span>
+            </Checkbox.Root>
+          );
+        })}
+      </div>
+
       <button type='submit' className='ModalButtonConfirmar'>
         <Check size={20} weight='bold' />
         Confirmar
