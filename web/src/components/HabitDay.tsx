@@ -1,17 +1,23 @@
 import * as Popover from '@radix-ui/react-popover';
 import { ProgressBar } from './ProgressBar';
-import * as Checkbox from '@radix-ui/react-checkbox';
+import { HabitsList } from './HabitsList';
 import clsx from 'clsx';
-import { Check } from 'phosphor-react';
 import dayjs from 'dayjs';
+import { useState } from 'react';
 
 interface HabitDayProps {
   date: Date;
   amount?: number;
-  completed?: number;
+  defaultCompleted?: number;
 }
 
-export function HabitDay({ date, completed = 0, amount = 0 }: HabitDayProps) {
+export function HabitDay({
+  date,
+  defaultCompleted = 0,
+  amount = 0,
+}: HabitDayProps) {
+  const [completed, setCompleted] = useState(defaultCompleted);
+
   const DaysSquares00 = 'DaysSquares00';
   const DaysSquares20 = 'DaysSquares20';
   const DaysSquares40 = 'DaysSquares40';
@@ -23,6 +29,10 @@ export function HabitDay({ date, completed = 0, amount = 0 }: HabitDayProps) {
 
   const dayAndMonth = dayjs(date).format('DD/MM');
   const dayOfWeek = dayjs(date).format('dddd');
+
+  function handleCompletedChanged(completed: number) {
+    setCompleted(completed);
+  }
 
   return (
     <Popover.Root>
@@ -42,16 +52,7 @@ export function HabitDay({ date, completed = 0, amount = 0 }: HabitDayProps) {
 
           <ProgressBar progress={completedPercentage} />
 
-          <div className='Checkbox'>
-            <Checkbox.Root className='CheckboxRoot'>
-              <div className='CheckboxIndicator'>
-                <Checkbox.Indicator className='CheckboxIndicatorCheck'>
-                  <Check />
-                </Checkbox.Indicator>
-              </div>
-              <span className='SpanDaysWeek'>Beber 2L de água</span>
-            </Checkbox.Root>
-          </div>
+          <HabitsList date={date} onCompletedChanged={handleCompletedChanged} />
 
           <Popover.Arrow height={10} width={24} className={'PopoverArrow'} />
         </Popover.Content>
