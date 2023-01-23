@@ -3,6 +3,7 @@ import { ProgressBar } from './ProgressBar';
 import * as Checkbox from '@radix-ui/react-checkbox';
 import clsx from 'clsx';
 import { Check } from 'phosphor-react';
+import dayjs from 'dayjs';
 
 interface HabitDayProps {
   date: Date;
@@ -20,6 +21,9 @@ export function HabitDay({ date, completed = 0, amount = 0 }: HabitDayProps) {
   const completedPercentage =
     amount > 0 ? Math.round((completed / amount) * 100) : 0;
 
+  const dayAndMonth = dayjs(date).format('DD/MM');
+  const dayOfWeek = dayjs(date).format('dddd');
+
   return (
     <Popover.Root>
       <Popover.Trigger
@@ -33,8 +37,8 @@ export function HabitDay({ date, completed = 0, amount = 0 }: HabitDayProps) {
       />
       <Popover.Portal>
         <Popover.Content className='PopoverContent'>
-          <span>{}</span>
-          <span>{date.toDateString()}</span>
+          <span>{dayOfWeek}</span>
+          <span>{dayAndMonth}</span>
 
           <ProgressBar progress={completedPercentage} />
 
