@@ -1,3 +1,6 @@
+import dayjs from 'dayjs';
+import { useEffect, useState } from 'react';
+import { api } from '../lib/axios';
 import { generateDatesFromYearBeginning } from '../utils/generate-dates-from-year-beginning';
 import { HabitDay } from './HabitDay';
 
@@ -8,7 +11,21 @@ const summaryDates = generateDatesFromYearBeginning();
 const minimumSummarySize = 25 * 7;
 const amountOfDaysToFill = minimumSummarySize - summaryDates.length;
 
+type Summary = {
+  id: string;
+  date: string;
+  amount: number;
+  completed: number;
+}[];
+
 export function SummaryTable() {
+  const [summary, setSumary] = useState<Summary>([]);
+  useEffect(() => {
+    api.get('summary').then((response) => {
+      setSumary(response.data);
+    });
+  }, []);
+
   return (
     <div className='SummaryTable'>
       <div className='HeaderTable'>
@@ -22,11 +39,15 @@ export function SummaryTable() {
       </div>
       <div className='DaysTable'>
         {summaryDates.map((date) => {
+          const dayInSummary = summary.find((day) => {
+            return dayjs(date).isSame(day.date, 'day');
+          });
           return (
             <HabitDay
               key={date.toString()}
-              amount={6}
-              comoleted={Math.round(Math.random() * 5)}
+              date={date}
+              amount={dayInSummary?.amount}
+              completed={dayInSummary?.completed}
             />
           );
         })}

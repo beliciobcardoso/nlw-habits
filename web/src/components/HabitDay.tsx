@@ -5,19 +5,20 @@ import clsx from 'clsx';
 import { Check } from 'phosphor-react';
 
 interface HabitDayProps {
-  amount: number;
-  comoleted: number;
+  date: Date;
+  amount?: number;
+  completed?: number;
 }
 
-export function HabitDay(props: HabitDayProps) {
+export function HabitDay({ date, completed = 0, amount = 0 }: HabitDayProps) {
   const DaysSquares00 = 'DaysSquares00';
   const DaysSquares20 = 'DaysSquares20';
   const DaysSquares40 = 'DaysSquares40';
   const DaysSquares60 = 'DaysSquares60';
   const DaysSquares80 = 'DaysSquares80';
-  const completedPercentage = Math.round(
-    (props.comoleted / props.amount) * 100
-  );
+
+  const completedPercentage =
+    amount > 0 ? Math.round((completed / amount) * 100) : 0;
 
   return (
     <Popover.Root>
@@ -32,8 +33,8 @@ export function HabitDay(props: HabitDayProps) {
       />
       <Popover.Portal>
         <Popover.Content className='PopoverContent'>
-          <span>Terça-Feira</span>
-          <span>22/01/2023</span>
+          <span>{}</span>
+          <span>{date.toDateString()}</span>
 
           <ProgressBar progress={completedPercentage} />
 
